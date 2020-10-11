@@ -1,3 +1,4 @@
+#課題2
 max  = 131
 min  = 0
 while max - min > 1
