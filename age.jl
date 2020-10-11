@@ -1,7 +1,7 @@
 max  = 131
 min  = 0
 while max - min > 1
-    mid = round(min+(max-min) /2)
+    mid = round(min + (max - min) / 2)
     print(mid)
     print("歳以上ですか？(yes/no)")
     ans = chomp(readline())
@@ -13,4 +13,4 @@ while max - min > 1
 end
 print(min)
 print("歳です")
-#"歳より上ですか？(yes/no)"
+# "歳より上ですか？(yes/no)"
