@@ -1,13 +1,12 @@
 i = 1
 for i in 1:100
     if (i % 3 == 0) & (i % 5 == 0)
-        print("fizzbuzz")
+        println("fizzbuzz")
     elseif (i % 3 == 0)
-        print("fizz")
+        println("fizz")
     elseif (i % 5 == 0)
-        print("buzz")
+        println("buzz")
     else
-        print(i)
+        println(i)
     end
-    print(",")
 end
