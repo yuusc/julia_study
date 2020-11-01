@@ -17,9 +17,3 @@ function age(ans)
     print("歳です")
     # "歳より上ですか？(yes/no)"
 end
-#まだ
-age = 0
-while age < 140
-    ans(age)
-    age ++
-end
