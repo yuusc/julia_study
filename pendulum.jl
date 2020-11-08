@@ -28,7 +28,7 @@ for i in 1:500
     println("sol: " * string(sol))
     println("num: " * string(num))
     x = [float(sol[1,round(Int, num * times)]),float(sol[2,round(Int, num * times)]),float(sol[3,round(Int, num * times)]),float(sol[4,round(Int, num * times)])]
-    u = G1 * (r - float(sol[1,round(Int, num * times)]))
+    global u = G1 * (r - float(sol[1,round(Int, num * times)]))
     println("theta: " * string(float(sol[2,round(Int, num * times)])))
     println("u: " * string(u))
     println("x: " * string(float(sol[1,round(Int,num* times)])))
