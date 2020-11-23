@@ -11,12 +11,12 @@ u = 0
 r = 0
 the = 0.0
 G1 = 15
-G2 = 2
-G3 = 70
+G2 = 25
+G3 = 50
 dt = 0.05/1000
 J = m * l * l / 3
 a0 = J * (m + M) + M * m * l * l
-x = [0.0,0.1,0.0,0.0]
+x = [0.0,0.2,0.0,0.0]
 preP = r - x[1,1]
 I = 0.0
 D = 0.0
@@ -30,7 +30,7 @@ println("B: " * string(B))
 
 #制御
 
-for i in 1:50
+for i in 1:100
     println("i: " * string(i))
     f(x, p, t) = A * x + B * u
     tspan = (0.0, 0.05)
@@ -45,11 +45,6 @@ for i in 1:50
     global D = P - preP　#Dの設定
     global preP = P #次のPの準備
     global u = -(G1 * P + G2 * I + G3 * D)*5 #PID制御を使用したuの設定
-    if float(sol[2,round(Int, num)])<r
-        u = u - 0.5
-    else
-        u = u + 0.5
-    end
     println("theta: " * string(float(sol[2,round(Int, num)])))
     println("u: " * string(u))
     println("x: " * string(float(sol[1,round(Int,num)])))
