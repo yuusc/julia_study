@@ -12,12 +12,12 @@ r = 0.2
 the = 0.0
 G1 = 20
 G2 = 9.0
-G3 = 0.1
+G3 = 0.5
 dt = 0.05/1000
 J = m * l * l / 3
 a0 = J * (m + M) + M * m * l * l
-x0 = [0.0,0.0,0.0,0.0]
-preP = r - x0[1,1]
+x = [0.0,0.1,0.0,0.0]
+preP = r - x[1,1]
 I = 0.0
 D = 0.0
 thearray = [0.1] #グラフ描画用　角度の配列
@@ -34,7 +34,7 @@ for i in 1:50
     println("i: " * string(i))
     f(x, p, t) = A * x + B * u
     tspan = (0.0, 0.05)
-    prob = ODEProblem(f, x0, tspan)
+    prob = ODEProblem(f, x, tspan)
     sol = solve(prob) #状態方程式を解く
     num = length(sol) #要素数
     println("sol: " * string(sol))
