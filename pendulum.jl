@@ -8,11 +8,11 @@ B = 0.000027
 C = 0.000027
 l = 0.8
 u = 0
-r = 0.2
+r = 0
 the = 0.0
-G1 = 20
-G2 = 9.0
-G3 = 0.5
+G1 = 15
+G2 = 2
+G3 = 70
 dt = 0.05/1000
 J = m * l * l / 3
 a0 = J * (m + M) + M * m * l * l
@@ -40,11 +40,16 @@ for i in 1:50
     println("sol: " * string(sol))
     println("num: " * string(round(Int,num)))
     x = [float(sol[1,round(Int, num )]),float(sol[2,round(Int, num)]),float(sol[3,round(Int, num)]),float(sol[4,round(Int, num)])] #xの再設定
-    global P = r - float(sol[2,round(Int, num)])　#Pの設定
+    global P = the - float(sol[2,round(Int, num)])　#Pの設定
     global I = I + P * dt #Iの設定
     global D = P - preP　#Dの設定
     global preP = P #次のPの準備
-    global u = G1 * P + G2 * I + G3 * D #PID制御を使用したuの設定
+    global u = -(G1 * P + G2 * I + G3 * D)*5 #PID制御を使用したuの設定
+    if float(sol[2,round(Int, num)])<r
+        u = u - 0.5
+    else
+        u = u + 0.5
+    end
     println("theta: " * string(float(sol[2,round(Int, num)])))
     println("u: " * string(u))
     println("x: " * string(float(sol[1,round(Int,num)])))
