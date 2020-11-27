@@ -23,7 +23,10 @@ D = 0.0
 thearray = [0.1] #グラフ描画用　角度の配列
 xarray = [0.0] #グラフ描画用　位置の配列
 
-A = [0 0 1 0;0 0 0 1;0 -m * m * l * l * g / a0 -B * (J + m * l * l) / a0 a34 = C * m * l / a0;0 (m + M) * m * l * g / a0 B * m * l / a0 -C * (m + M) / a0]
+A = [0 0 1 0
+0 0 0 1
+0 -m * m * l * l * g / a0 -B * (J + m * l * l) / a0 a34 = C * m * l / a0
+0 (m + M) * m * l * g / a0 B * m * l / a0 -C * (m + M) / a0]
 B = [0;0;(J + m * l * l) / a0;-m * l / a0]
 println("A: " * string(A))
 println("B: " * string(B))
