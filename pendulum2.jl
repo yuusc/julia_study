@@ -50,9 +50,11 @@ Gr3 = 2.0
 for i in 1:1000
 t = i*dt
 println("t:"*string(t))
+#常微分方程式を解く
 h2 = ([1 0 0 0;0 1 0 0;0 0 1 0;0 0 0 1]-(dt/2)*A)\(([1 0 0 0;0 1 0 0;0 0 1 0;0 0 0 1]+(dt/2)*A)*h1+(dt/2)*B*(u1+u2))
 h1 = h2 #再設定
 u1 = u2
+#thetaとxを交互に判定
     #角度
     if rtswitch == 0 #thetaで判定
     global P = the - float(h2[2,1])　#Pの設定
@@ -72,8 +74,10 @@ u1 = u2
     println("r,u2:"*string(u2))
     end
     println(h2)
+    #配列に追加（グラフ用）
     push!(thearray,h2[2,1])
     push!(xarray,h2[1,1])
 end
+#グラフ描画
 plot(thearray,ylims=(-1.0,1.0))
 plot!(xarray)
