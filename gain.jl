@@ -5,29 +5,18 @@ g = 9.8
 M = 0.2
 l = 1.0
 I = 4 * M * l * l / 3
-
-the = pi/3
+the = pi / 3
 dthe = 0.0
 Tu = 0.0
-
-
-# 制御
-
- kp = 5.0
- ki = 5.0
- kd = 1.0
-
-#kp = 0.0
-#ki = 0.0
-#kd = 0.0
-
+kp = 5.0
+ki = 5.0
+kd = 1.0
 dt = 0.01
-
-theta = pi/2
+theta = pi / 2
 dtheta = 0
+
 F = l * M * g * sin(theta)
 thearray = [theta] # グラフ描画用　角度の配列
-
 z = (the - theta) * dt
 
 A = [ 0 1 0
@@ -41,8 +30,7 @@ r = [the,dthe,F]
 f(x,p,t) = (A * x + B * r) / I
 tspan = dt
 
-println("目標値: "*string(the)*", 初期値: "*string(theta))
-
+println("目標値: " * string(the) * ", 初期値: " * string(theta))
 
 # 一定時間進める→PIDで計算→thetaとTuを再設定→再度時間を進める　という流れをODEProblemのみで実行するのは不可能そう
 # ↑ここから                               ↑ここまでを1サイクルとしてfor文を回す方法しか思いつかない．検索しても適切なものは発見できなかった．
@@ -53,7 +41,7 @@ for i in 1:5
     sol = solve(prob, save_everystep=false) # 状態方程式を解く
     println("sol: " * string(sol))
 
-    #計算結果
+    # 計算結果
     dtheta = sol[1,2]
     ddtheta = sol[2,2]
     dz = sol[3,2]
@@ -68,14 +56,14 @@ for i in 1:5
     println("dz: " * string(dz))
     println("")
 
-    #前回の値を代入
+    # 次回の準備
     z = (the - theta) * dt
     F = l * M * g * sin(theta)
     x = [theta,dtheta,z]
     r = [the,dthe,F]
-    f(x,p,t) = (A * x + B * r) / I
+    f(x, p, t) = (A * x + B * r) / I
 
     push!(thearray, theta) # 角度を配列に追加
 end
 # グラフを描画
-plot(thearray,title="Rigid body pendulum",xaxis="Time (10^(-2)s)",yaxis="Angle (rad)",label="theta")
+plot(thearray,title="Rigid body pendulum",xaxis="Time (x10^(-2)s)",yaxis="Angle (rad)",label="theta")
